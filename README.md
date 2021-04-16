@@ -1,6 +1,13 @@
 # Conservative Compact Schemes #
 
-This repository contains short snippets that reproduce some of the invicid benchmark tests proposed in [1]:
+This repository exemplifies the most clean and minimalistic way to program `conservative compact schemes` for solving systems of equations such as Navier-Stokes or Euler-Equations.
+
+This short and extremely versatile implementation of conservative compact schemes is possible thanks to three ingredients:
+* A Taylor Table algorithm recently presented in [here](https://fr.mathworks.com/matlabcentral/fileexchange/90506-easy-build-compact-schemes?s_tid=srchtitle).
+* An ingenious spare technique to produce highly performing discrete finite-difference operations in higher-dimensions. Such example is available [here](https://fr.mathworks.com/matlabcentral/fileexchange/90541-easy-build-finite-difference-operators?s_tid=srchtitle).
+* The conservative boundary schemes by Brady and Livescu in [1]
+
+Here we reproduce some of the invicid benchmark tests proposed in [1]: 
 
 ## Test 1.1: Euler equations 1d, Gaussian wave with slip-walls boundaries 
 
@@ -27,6 +34,8 @@ q_int | ![](figures/lele643_RK4_EE3d_IC1_41x41x41_conservation.png) | ![](figure
 * Because the compact schemes presented in [1] have been taylored to work well with Dirichlet (homogeneous) boundary conditions. There is no need for using a skew-symmetric formulation of the convective operators. (The skew-symmetric from of the convective terms in reality adds small amounts of numerical diffusion in the scheme).
 * Classical schemes such as Lele643 [2] or Pade43 [3], fail in the short term due spurios oscilations that emanate from the boundaries. This is the reason why compact schemes normaly rely on filters to keep the solution stable.
 * By integrating the conserved quantities over time, is easy to see that the schemes proposed in [1] are truly conservative and stable for very long time simulations (Or at least until the formation of a shockwave) and do not need any filtering or the addition of artificial viscosity. Therefore, they are high-order conservatives compact schemes in the pure finite-difference sense.
+
+Happy coding ;D
 
 -- Manuel A. Diaz, 2021.
 
